@@ -11,6 +11,9 @@ import lombok.Data;
 @SuppressWarnings("unused")
 public class Cliente {
 	
+	public Cliente() {
+		// TODO Auto-generated constructor stub
+	}
 	private int id;
 	private String nombre;
 	private String apellido1;
