@@ -7,6 +7,9 @@ import lombok.Data;
 @AllArgsConstructor
 @SuppressWarnings("unused")
 public class Comercial {
+	public Comercial() {
+		// TODO Auto-generated constructor stub
+	}
 	private int id;
 	private String nombre;
 	private String apellido1;
