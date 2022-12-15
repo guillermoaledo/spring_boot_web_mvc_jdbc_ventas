@@ -76,6 +76,14 @@
 			</div> 
 		</div>
 
+		<div th:each="pedido : ${listaPedidos}" style="margin-top: 6px;" class="clearfix">
+			<div style="float: left;width: 14%" th:text="${pedido.id}">0</div>
+			<div style="float: left;width: 14%" th:text="${pedido.total}">0.0</div>
+			<div style="float: left;width: 14%" th:text="${pedido.fecha}">00-00-00</div>
+			<div style="float: left;width: 14%" th:text="${pedido.id_cliente}">0</div>
+			<div style="float: left;width: 14%" th:text="${pedido.id_comercial}">0</div>
+		</div>
+
 </div>
 
 </body>
