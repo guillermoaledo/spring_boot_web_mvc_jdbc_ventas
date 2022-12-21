@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.iesvdm.dao.ComercialDAO;
 import org.iesvdm.dao.PedidoDAO;
+import org.iesvdm.dto.PedidoDTO;
 import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.modelo.Pedido;
@@ -28,7 +29,7 @@ public class ComercialService {
 		return comercialDAO.getAll();
 	}
 	
-	public List<Pedido> listarPedidos(int id) {
+	public List<PedidoDTO> listarPedidos(int id) {
 		
 		return pedidoDAO.getAllBy(id);
 	}

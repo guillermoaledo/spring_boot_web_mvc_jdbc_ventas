@@ -2,6 +2,7 @@ package org.iesvdm.controlador;
 
 import java.util.List;
 
+import org.iesvdm.dto.PedidoDTO;
 import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.modelo.Pedido;
@@ -38,7 +39,7 @@ public class ComercialController {
 		Comercial comercial = comercialService .one(id);
 		model.addAttribute("comercial", comercial);
 		
-		List<Pedido> listPed = comercialService.listarPedidos(id);
+		List<PedidoDTO> listPed = comercialService.listarPedidos(id);
 		model.addAttribute("listaPedidos", listPed);
 		
 		

@@ -18,12 +18,12 @@
 	<form th:action="@{/comerciales/crear}" th:object="${comercial}" method="post">
 		<div class="clearfix">
 			<div style="float: left; width: 50%">
-				<h1>Crear Comercial</h1>
+				<h1 th:text="#{crearcliente}"></h1>
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
 				
 				<div style="position: absolute; left: 39%; top : 39%;">								
-					<input type="submit" value="Crear"/>					
+					<input type="submit" th:attr="value = #{crear}"/>					
 				</div>
 				
 			</div>
@@ -34,32 +34,32 @@
 		</div>
 		
 		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 50%">
-				Nombre
+			<div style="float: left;width: 50%" th:text="#{nombre}">
+				
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:field="*{nombre}" />
 			</div> 
 		</div>
 		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 50%">
-				Apellido1
+			<div style="float: left;width: 50%" th:text="#{apellido1}">
+				
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:field="*{apellido1}" />
 			</div> 
 		</div>
 		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 50%">
-				Apellido2
+			<div style="float: left;width: 50%" th:text="#{apellido2}">
+				
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:field="*{apellido2}" />
 			</div> 
 		</div>
-		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 50%">
-				Comisión
+		<div style="margin-top: 6px;" class="clearfix" >
+			<div style="float: left;width: 50%" th:text="#{comision}">
+				
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:field="*{comision}" />
