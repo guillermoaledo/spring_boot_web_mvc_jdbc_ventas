@@ -91,4 +91,12 @@ public class ComercialDAOImpl implements ComercialDAO {
 
 		log.info("Delete de Comercial con {} registros eliminados.", rows);
 	}
+
+	@Override
+	public Double totalPedidos(int id) {
+		Double total = jdbcTemplate.queryForObject("SELECT sum(p.total) AS total FROM pedido p LEFT JOIN cliente c  ON p.id_cliente = c.id WHERE p.id_comercial = ?", 
+				(rs, rowNum) -> (rs.getDouble("total")), id);
+		return total;
+	}
+	
 }

@@ -12,6 +12,8 @@ public interface ComercialDAO {
 	public List<Comercial> getAll();
 	public Optional<Comercial>  find(int id);
 	
+	public Double totalPedidos(int id);
+	
 	public void update(Comercial comercial);
 	
 	public void delete(int id);

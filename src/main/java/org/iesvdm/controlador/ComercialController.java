@@ -39,6 +39,8 @@ public class ComercialController {
 		Comercial comercial = comercialService .one(id);
 		model.addAttribute("comercial", comercial);
 		
+		model.addAttribute("totalPedidos", comercialService.totalPedidos(id));
+		
 		List<PedidoDTO> listPed = comercialService.listarPedidos(id);
 		model.addAttribute("listaPedidos", listPed);
 		

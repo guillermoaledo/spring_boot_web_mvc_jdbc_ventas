@@ -42,6 +42,11 @@ public class ComercialService {
 			return null;
 	}
 	
+	public Double totalPedidos(Integer id) {
+		Double total = comercialDAO.totalPedidos(id);
+		return total;
+	}
+	
 	public void newComercial(Comercial comercial) {
 		
 		comercialDAO.create(comercial);
@@ -56,4 +61,6 @@ public class ComercialService {
 		
 		comercialDAO.delete(id);
 	}
+	
+
 }
