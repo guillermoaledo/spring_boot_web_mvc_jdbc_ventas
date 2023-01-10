@@ -41,6 +41,12 @@ public class ComercialController {
 		
 		model.addAttribute("totalPedidos", comercialService.totalPedidos(id));
 		
+		model.addAttribute("mediaPedidos", comercialService.mediaPedidos(id));
+		
+		model.addAttribute("pedidoMaximo", comercialService.pedidoMaximo(id));
+		
+		model.addAttribute("pedidoMinimo", comercialService.pedidoMinimo(id));
+		
 		List<PedidoDTO> listPed = comercialService.listarPedidos(id);
 		model.addAttribute("listaPedidos", listPed);
 		

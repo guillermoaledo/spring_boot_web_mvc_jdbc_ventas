@@ -47,6 +47,20 @@ public class ComercialService {
 		return total;
 	}
 	
+	public Double mediaPedidos(Integer id) {
+		Double media = comercialDAO.mediaPedidos(id);
+		return media;
+	}
+	
+	public Double pedidoMaximo(Integer id) {
+		Double maximo = comercialDAO.pedidoMaximo(id);
+		return maximo;
+	}
+	public Double pedidoMinimo(Integer id) {
+		Double minimo = comercialDAO.pedidoMinimo(id);
+		return minimo;
+	}
+	
 	public void newComercial(Comercial comercial) {
 		
 		comercialDAO.create(comercial);

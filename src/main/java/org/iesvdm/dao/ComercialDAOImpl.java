@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.iesvdm.modelo.Comercial;
+import org.iesvdm.modelo.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -98,5 +99,27 @@ public class ComercialDAOImpl implements ComercialDAO {
 				(rs, rowNum) -> (rs.getDouble("total")), id);
 		return total;
 	}
+	
+	@Override
+	public Double mediaPedidos(int id) {
+		Double media = jdbcTemplate.queryForObject("SELECT avg(p.total) as media FROM pedido p LEFT JOIN cliente c  ON p.id_cliente = c.id WHERE p.id_comercial = ?", 
+				(rs, rowNum) -> (rs.getDouble("media")), id);
+		return media;
+	}
+	
+	@Override
+	public Double pedidoMaximo(int id) {
+		Double maximo = jdbcTemplate.queryForObject("SELECT max(p.total) as maximo FROM pedido p LEFT JOIN cliente c  ON p.id_cliente = c.id WHERE p.id_comercial = ?", 
+				(rs, rowNum) -> (rs.getDouble("maximo")), id);
+		return maximo;
+	}
+	
+	@Override
+	public Double pedidoMinimo(int id) {
+		Double minimo = jdbcTemplate.queryForObject("SELECT min(p.total) as minimo FROM pedido p LEFT JOIN cliente c  ON p.id_cliente = c.id WHERE p.id_comercial = ?", 
+				(rs, rowNum) -> (rs.getDouble("minimo")), id);
+		return minimo;
+	}
+	
 	
 }
