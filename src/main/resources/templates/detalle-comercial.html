@@ -120,14 +120,62 @@
 
 		<div th:each="pedido : ${listaPedidos}" style="margin-top: 6px;"
 			class="clearfix">
-			<div style="float: left; width: 20%" th:text="${pedido.id}">0</div>
-			<div style="float: left; width: 20%" th:text="${pedido.total}">0.0</div>
-			<div style="float: left; width: 20%" th:text="${pedido.fecha}">00-00-00</div>
-			<div style="float: left; width: 20%" th:text="${pedido.id_cliente}">0</div>
-			<a th:href="@{/clientes/__${pedido.id_cliente}__}" th:target="_blank"
-				style="float: left; width: 20%" th:text="${pedido.nombre_cliente}+' '+${pedido.apellido1_cliente}+' '+${pedido.apellido2_cliente ?: '&nbsp;'}">Nombre</a>
+			<div th:if="${pedido.total == pedidoMaximo}" style="color: green">
+				<div style="float: left; width: 20%" th:text="${pedido.id}">0</div>
+				<div style="float: left; width: 20%" th:text="${pedido.total}">0.0</div>
+				<div style="float: left; width: 20%" th:text="${pedido.fecha}">00-00-00</div>
+				<div style="float: left; width: 20%" th:text="${pedido.id_cliente}">0</div>
+				<a th:href="@{/clientes/__${pedido.id_cliente}__}" th:target="_blank"
+					style="float: left; width: 20%" th:text="${pedido.nombre_cliente}+' '+${pedido.apellido1_cliente}+' '+${pedido.apellido2_cliente ?: '&nbsp;'}">Nombre</a>
+			</div>
+			<div th:if="${pedido.total == pedidoMinimo && pedido.total != pedidoMaximo}" style="color: orange">
+				<div style="float: left; width: 20%" th:text="${pedido.id}">0</div>
+				<div style="float: left; width: 20%" th:text="${pedido.total}">0.0</div>
+				<div style="float: left; width: 20%" th:text="${pedido.fecha}">00-00-00</div>
+				<div style="float: left; width: 20%" th:text="${pedido.id_cliente}">0</div>
+				<a th:href="@{/clientes/__${pedido.id_cliente}__}" th:target="_blank"
+					style="float: left; width: 20%" th:text="${pedido.nombre_cliente}+' '+${pedido.apellido1_cliente}+' '+${pedido.apellido2_cliente ?: '&nbsp;'}">Nombre</a>
+			</div>
+			<div th:unless="${pedido.total == pedidoMinimo || pedido.total == pedidoMaximo}">
+				<div style="float: left; width: 20%" th:text="${pedido.id}">0</div>
+				<div style="float: left; width: 20%" th:text="${pedido.total}">0.0</div>
+				<div style="float: left; width: 20%" th:text="${pedido.fecha}">00-00-00</div>
+				<div style="float: left; width: 20%" th:text="${pedido.id_cliente}">0</div>
+				<a th:href="@{/clientes/__${pedido.id_cliente}__}" th:target="_blank"
+					style="float: left; width: 20%" th:text="${pedido.nombre_cliente}+' '+${pedido.apellido1_cliente}+' '+${pedido.apellido2_cliente ?: '&nbsp;'}">Nombre</a>
+			</div>
 		</div>
+		<div style="float: left; width: 100%">
+			<h1 th:text="#{pedidosordenados}"></h1>
+		</div>
+		<div class="clearfix">
+			<hr />
+		</div>
+		<div>
+			<div style="float: left; width: 20%" th:text="#{idcliente}"></div>
+			<div style="float: left; width: 20%" th:text="#{total}"></div>
+			<div style="float: left; width: 20%" th:text="#{fecha}"></div>
+			<div style="float: left; width: 20%" th:text="#{idcliente}"></div>
+			<div style="float: left; width: 20%" th:text="#{nombrecliente}"></div>
+		</div>
+		<br>
+		<div class="clearfix">
+			<hr />
+		</div>
+		<div th:each="pedido : ${listaOrdenadaPedidos}" style="margin-top: 6px;"
+			class="clearfix">
+				<div style="float: left; width: 20%" th:text="${pedido.id}">0</div>
+				<div style="float: left; width: 20%" th:text="${pedido.total}">0.0</div>
+				<div style="float: left; width: 20%" th:text="${pedido.fecha}">00-00-00</div>
+				<div style="float: left; width: 20%" th:text="${pedido.id_cliente}">0</div>
+				<a th:href="@{/clientes/__${pedido.id_cliente}__}" th:target="_blank"
+					style="float: left; width: 20%" th:text="${pedido.nombre_cliente}+' '+${pedido.apellido1_cliente}+' '+${pedido.apellido2_cliente ?: '&nbsp;'}">Nombre</a>
+	
+		
+		</div>
+		
 	</div>
+
 
 
 </body>

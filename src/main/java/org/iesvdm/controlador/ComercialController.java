@@ -50,6 +50,8 @@ public class ComercialController {
 		List<PedidoDTO> listPed = comercialService.listarPedidos(id);
 		model.addAttribute("listaPedidos", listPed);
 		
+		List<PedidoDTO> listPedOrdenada = listPed.stream().sorted((p1, p2) -> Double.compare(p1.getTotal(), p2.getTotal())).toList();
+		model.addAttribute("listaOrdenadaPedidos", listPedOrdenada);
 		
 		return "detalle-comercial";
 	}
