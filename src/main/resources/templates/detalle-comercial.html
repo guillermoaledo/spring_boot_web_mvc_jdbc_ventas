@@ -101,7 +101,7 @@
 		<br>
 		<br>
 		<div style="float: left; width: 100%">
-			<h1 th:text="#{pedidos}"></h1>
+		<h1 th:text="#{pedidos}"></h1>
 		</div>
 		<div class="clearfix">
 			<hr />
@@ -153,9 +153,7 @@
 				<a th:href="@{/clientes/__${pedido.id_cliente}__}" th:target="_blank"
 					style="float: left; width: 20%" th:text="${pedido.nombre_cliente}+' '+${pedido.apellido1_cliente}+' '+${pedido.apellido2_cliente ?: '&nbsp;'}">Nombre</a>
 	
-		
 		</div>
-		
 	</div>
 
 
