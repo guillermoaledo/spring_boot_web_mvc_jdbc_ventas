@@ -4,13 +4,18 @@ import java.util.List;
 import java.util.Optional;
 
 import org.iesvdm.dao.ClienteDAO;
+import org.iesvdm.dao.ComercialDAO;
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.modelo.Cliente;
+import org.iesvdm.modelo.Comercial;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClienteService {
 	
 	private ClienteDAO clienteDAO;
+	
+	private ComercialDAO comercialDAO;
 	
 	//Se utiliza inyección automática por constructor del framework Spring.
 	//Por tanto, se puede omitir la anotación Autowired
@@ -46,6 +51,10 @@ public class ClienteService {
 	public void deleteCliente(int id) {
 		
 		clienteDAO.delete(id);
+	}
+	
+	public List<Comercial> listaComerciales(int id) {
+		return comercialDAO.getAllBy(id);
 	}
 	
 

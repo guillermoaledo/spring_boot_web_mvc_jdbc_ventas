@@ -8,13 +8,11 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface ComercialMapper {
 
-	@Mapping(target="id_cliente", source="id_clienteIn")
-	@Mapping(target="nombre_cliente", source="nombre_clienteIn")
-	@Mapping(target="apellido1_cliente", source="apellido1_clienteIn")
-	@Mapping(target="apellido2_cliente", source="apellido2_clienteIn")
-	@Mapping(target="ciudad_cliente", source="ciudad_clienteIn")
-	@Mapping(target="categoria_cliente", source="categoria_clienteIn")
-	public ComercialDTO comercialAComercialDTO(Comercial comercial, int id_clienteIn, String nombre_clienteIn, String apellido1_clienteIn, String apellido2_clienteIn, String ciudad_clienteIn, String categoria_clienteIn);
+	@Mapping(target="numero_pedidos", source="numero_pedidosIn")
+	@Mapping(target="numero_pedidos_trimestre", source="numero_pedidos_trimestreIn")
+	@Mapping(target="numero_pedidos_anio", source="numero_pedidos_anioIn")
+	@Mapping(target="numero_pedidos_lustro", source="numero_pedidos_lustroIn")
+	public ComercialDTO comercialAComercialDTO(Comercial comercial, int id_clienteIn, String numero_pedidosIn, String numero_pedidos_trimestreIn, String numero_pedidos_anioIn, String numero_pedidos_lustroIn);
 	
 	public Comercial comercialDTOAComercial(ComercialDTO comercial);
 }

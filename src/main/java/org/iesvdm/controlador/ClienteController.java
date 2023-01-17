@@ -2,8 +2,12 @@ package org.iesvdm.controlador;
 
 import java.util.List;
 
+import org.iesvdm.dto.ComercialDTO;
+import org.iesvdm.mapstruct.ComercialMapper;
 import org.iesvdm.modelo.Cliente;
+import org.iesvdm.modelo.Comercial;
 import org.iesvdm.service.ClienteService;
+import org.iesvdm.service.ComercialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +27,12 @@ public class ClienteController {
 	@Autowired
 	private ClienteService clienteService;
 	
+	@Autowired
+	private ComercialService comercialService;
+	
+	@Autowired
+	private ComercialMapper comercialMapper;
+	
 	
 	//@RequestMapping(value = "/clientes", method = RequestMethod.GET)
 	//equivalente a la siguiente anotación
@@ -41,6 +51,11 @@ public class ClienteController {
 		
 		Cliente cliente = clienteService.one(id);
 		model.addAttribute("cliente", cliente);
+		
+		List<Comercial> comerciales = comercialService.listByClientId(id);
+		
+		List<ComercialDTO> comercialesDTO = comerciales.stream().map((c) -> comercialMapper.comercialAComercialDTO(c, 0, null, null, null, null)).toList();
+		model.addAttribute("listaComerciales", comercialesDTO);
 		
 		return "detalle-cliente";
 	}

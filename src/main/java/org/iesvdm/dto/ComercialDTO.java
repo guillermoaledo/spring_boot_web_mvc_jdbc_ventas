@@ -13,10 +13,9 @@ public class ComercialDTO {
 	private String apellido2;
 	private double comision;
 	
-	private int id_cliente;
-	private String nombre_cliente;
-	private String apellido1_cliente;
-	private String apellido2_cliente;
-	private String ciudad_cliente;
-	private int categoria_cliente;
+	private int numero_pedidos;
+	private int numero_pedidos_trimestre;
+	private int numero_pedidos_semestre;
+	private int numero_pedidos_anio;
+	private int numero_pedidos_lustro;
 }

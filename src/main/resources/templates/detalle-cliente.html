@@ -83,6 +83,42 @@
 				<input th:value="${cliente.categoria}" value="Categoría" readonly="readonly"/>
 			</div> 
 		</div>
+		<br>
+		<br>
+		<div style="float: left; width: 100%">
+		<h1 th:text="#{Comerciales}"></h1>
+		</div>
+		<div class="clearfix">
+			<hr />
+		</div>
+		<div>
+			<div style="float: left; width: 10%" th:text="#{id}"></div>
+			<div style="float: left; width: 10%" th:text="#{nombre}"></div>
+			<div style="float: left; width: 10%" th:text="#{apellido1}"></div>
+			<div style="float: left; width: 10%" th:text="#{apellido2}"></div>
+			<div style="float: left; width: 10%" th:text="#{comision}"></div>
+			<div style="float: left; width: 10%" th:text="#{numeropedidos}"></div>
+			<div style="float: left; width: 10%" th:text="#{numeropedidostrimestre}"></div>
+			<div style="float: left; width: 10%" th:text="#{numeropedidossemestre}"></div>
+			<div style="float: left; width: 10%" th:text="#{numeropedidosanio}"></div>
+			<div style="float: left; width: 10%" th:text="#{numeropedidoslustro}"></div>
+		</div>
+		<br>
+		<div class="clearfix">
+			<hr />
+		</div>
+		<div th:each="comercial : ${listaComerciales}" class="clearfix">
+				<div style="float: left; width: 10%" th:text="${comercial.id}">0</div>
+				<div style="float: left; width: 10%" th:text="${comercial.nombre}">0.0</div>
+				<div style="float: left; width: 10%" th:text="${comercial.apellido1}">0.0</div>
+				<div style="float: left; width: 10%" th:text="${comercial.apellido2}">0.0</div>
+				<div style="float: left; width: 10%" th:text="${comercial.comision}">0.0</div>
+				<div style="float: left; width: 10%" th:text="${comercial.numero_pedidos}">0.0</div>
+				<div style="float: left; width: 10%" th:text="${comercial.numero_pedidos_trimestre}">0.0</div>
+				<div style="float: left; width: 10%" th:text="${comercial.numero_pedidos_semestre}">0.0</div>
+				<div style="float: left; width: 10%" th:text="${comercial.numero_pedidos_anio}">0.0</div>
+				<div style="float: left; width: 10%" th:text="${comercial.numero_pedidos_lustro}">0.0</div>
+		</div>
 
 </div>
 

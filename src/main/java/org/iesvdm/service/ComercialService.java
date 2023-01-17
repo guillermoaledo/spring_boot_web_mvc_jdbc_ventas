@@ -29,6 +29,10 @@ public class ComercialService {
 		return comercialDAO.getAll();
 	}
 	
+	public List<Comercial> listByClientId(int id) {
+		return comercialDAO.getAllBy(id);
+	}
+	
 	public List<PedidoDTO> listarPedidos(int id) {
 		
 		return pedidoDAO.getAllBy(id);
@@ -76,5 +80,8 @@ public class ComercialService {
 		comercialDAO.delete(id);
 	}
 	
+	public int pedidos(int id) {
+		return comercialDAO.numPedidos(id);
+	}
 
 }

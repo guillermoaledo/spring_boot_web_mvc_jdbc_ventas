@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.modelo.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,19 @@ public class ComercialDAOImpl implements ComercialDAO {
 
 		log.info("Devueltos {} registros.", listCom.size());
 
+		return listCom;
+	}
+	
+	@Override
+	public List<Comercial> getAllBy(int id) {
+		List<Comercial> listCom = jdbcTemplate.query("select distinct co.* from comercial co left join (pedido p left join cliente cli on p.id_cliente = cli.id) on co.id = p.id_comercial where cli.id = ?", 
+																(rs, rowNum) -> new Comercial(rs.getInt("id"), 
+																		rs.getString("nombre"), 
+																		rs.getString("apellido1"),
+																		rs.getString("apellido2"),
+																	rs.getDouble("comisión")),
+																id);
+		
 		return listCom;
 	}
 
@@ -119,6 +133,41 @@ public class ComercialDAOImpl implements ComercialDAO {
 		Double minimo = jdbcTemplate.queryForObject("SELECT min(p.total) as minimo FROM pedido p LEFT JOIN cliente c  ON p.id_cliente = c.id WHERE p.id_comercial = ?", 
 				(rs, rowNum) -> (rs.getDouble("minimo")), id);
 		return minimo;
+	}
+
+	@Override
+	public int numPedidos(int id) {
+		Integer pedidos = jdbcTemplate.queryForObject("select count(p.id) as pedidos from comercial c left join pedido p on p.id_comercial = c.id where c.id =  ?", 
+				(rs, rowNum) -> (rs.getInt("pedidos")), id);
+		return pedidos;
+	}
+
+	@Override
+	public int numPedidosTrimestre(int id) {
+		Integer pedidos = jdbcTemplate.queryForObject("select count(p.id) as pedidos from comercial c left join pedido p on p.id_comercial = c.id where c.id = ? and p.fecha BETWEEN DATE_SUB(NOW(), INTERVAL 3 MONTH) AND NOW()", 
+				(rs, rowNum) -> (rs.getInt("pedidos")), id);
+		return pedidos;
+	}
+
+	@Override
+	public int numPedidosSemestre(int id) {
+		Integer pedidos = jdbcTemplate.queryForObject("", 
+				(rs, rowNum) -> (rs.getInt("pedidos")), id);
+		return pedidos;
+	}
+
+	@Override
+	public int numPedidosAnio(int id) {
+		Integer pedidos = jdbcTemplate.queryForObject("", 
+				(rs, rowNum) -> (rs.getInt("pedidos")), id);
+		return pedidos;
+	}
+
+	@Override
+	public int numPedidosLustro(int id) {
+		Integer pedidos = jdbcTemplate.queryForObject("", 
+				(rs, rowNum) -> (rs.getInt("pedidos")), id);
+		return pedidos;
 	}
 	
 	
