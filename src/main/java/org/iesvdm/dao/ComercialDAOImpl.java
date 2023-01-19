@@ -151,21 +151,21 @@ public class ComercialDAOImpl implements ComercialDAO {
 
 	@Override
 	public int numPedidosSemestre(int id) {
-		Integer pedidos = jdbcTemplate.queryForObject("", 
+		Integer pedidos = jdbcTemplate.queryForObject("select count(p.id) as pedidos from comercial c left join pedido p on p.id_comercial = c.id where c.id = ? and p.fecha BETWEEN DATE_SUB(NOW(), INTERVAL 6 MONTH) AND NOW()", 
 				(rs, rowNum) -> (rs.getInt("pedidos")), id);
 		return pedidos;
 	}
 
 	@Override
 	public int numPedidosAnio(int id) {
-		Integer pedidos = jdbcTemplate.queryForObject("", 
+		Integer pedidos = jdbcTemplate.queryForObject("select count(p.id) as pedidos from comercial c left join pedido p on p.id_comercial = c.id where c.id = ? and p.fecha BETWEEN DATE_SUB(NOW(), INTERVAL 1 YEAR) AND NOW()", 
 				(rs, rowNum) -> (rs.getInt("pedidos")), id);
 		return pedidos;
 	}
 
 	@Override
 	public int numPedidosLustro(int id) {
-		Integer pedidos = jdbcTemplate.queryForObject("", 
+		Integer pedidos = jdbcTemplate.queryForObject("select count(p.id) as pedidos from comercial c left join pedido p on p.id_comercial = c.id where c.id = ? and p.fecha BETWEEN DATE_SUB(NOW(), INTERVAL 5 YEAR) AND NOW()", 
 				(rs, rowNum) -> (rs.getInt("pedidos")), id);
 		return pedidos;
 	}

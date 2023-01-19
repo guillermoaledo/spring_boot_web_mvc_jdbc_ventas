@@ -83,5 +83,21 @@ public class ComercialService {
 	public int pedidos(int id) {
 		return comercialDAO.numPedidos(id);
 	}
+	
+	public int pedidosTrimestre(int id) {
+		return comercialDAO.numPedidosTrimestre(id);
+	}
+	
+	public int pedidosSemestre(int id) {
+		return comercialDAO.numPedidosSemestre(id);
+	}
+	
+	public int pedidosAnio(int id) {
+		return comercialDAO.numPedidosAnio(id);
+	}
+	
+	public int pedidosLustro(int id) {
+		return comercialDAO.numPedidosLustro(id);
+	}
 
 }

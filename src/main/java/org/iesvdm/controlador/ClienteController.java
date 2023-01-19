@@ -54,7 +54,7 @@ public class ClienteController {
 		
 		List<Comercial> comerciales = comercialService.listByClientId(id);
 		
-		List<ComercialDTO> comercialesDTO = comerciales.stream().map((c) -> comercialMapper.comercialAComercialDTO(c, 0, null, null, null, null)).toList();
+		List<ComercialDTO> comercialesDTO = comerciales.stream().map(c -> comercialMapper.comercialAComercialDTO(c, comercialService.pedidos(c.getId()), comercialService.pedidosTrimestre(c.getId()), comercialService.pedidosSemestre(c.getId()), comercialService.pedidosAnio(c.getId()), comercialService.pedidosLustro(c.getId()))).toList();
 		model.addAttribute("listaComerciales", comercialesDTO);
 		
 		return "detalle-cliente";
