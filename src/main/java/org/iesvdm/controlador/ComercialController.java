@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
+
+import jakarta.validation.Valid;
+
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 
 
@@ -57,20 +61,23 @@ public class ComercialController {
 	}
 	
 	@GetMapping({"/comerciales/crear","/comerciales/crear/"})
-	public String crear(Model model) {
-		
-		Comercial comercial= new Comercial();
-		model.addAttribute("comercial", comercial);
+	public String crear(@ModelAttribute Comercial comercial, Model model) {
 		
 		return "crear-comercial";
 	}
 	
 	@PostMapping({"/comerciales/crear","/comerciales/crear/"})
-	public RedirectView submitCrear(@ModelAttribute("comercial") Comercial comercial) {
+	public String submitCrear(@Valid @ModelAttribute Comercial comercial, BindingResult bindingResulted, Model model) {
+		
+		if(bindingResulted.hasErrors()) {
+			model.addAttribute("comercial", comercial);
+			
+			return "crear-comercial";
+			
+		}
 		
 		comercialService.newComercial(comercial);
-		
-		return new RedirectView("/comerciales");
+		return "redirect:/comerciales";
 	}
 	
 	@GetMapping("/comerciales/editar/{id}")
@@ -83,11 +90,17 @@ public class ComercialController {
 	}
 	
 	@PostMapping("/comerciales/editar/{id}")
-	public RedirectView submitEditar(@ModelAttribute("comercial") Comercial comercial) {
+	public String submitEditar(@Valid @ModelAttribute Comercial comercial, BindingResult bindingResulted, Model model) {
+		
+		if(bindingResulted.hasErrors()) {
+			model.addAttribute("comercial", comercial);
+			
+			return "editar-comercial";
+			
+		}
 		
 		comercialService.replaceComercial(comercial);
-		
-		return new RedirectView("/comerciales");
+		return "redirect:/comerciales";
 	}
 	
 	@PostMapping("/comerciales/borrar/{id}")

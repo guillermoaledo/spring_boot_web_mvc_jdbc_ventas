@@ -9,6 +9,9 @@
 	display: block;
 	clear: both;
 }
+.error {
+	color: red;
+}
 
 </style>
 </head>
@@ -18,12 +21,12 @@
 	<form  th:action="@{/clientes/editar/__${cliente.id}__}" th:object="${cliente}" method="post" >		
 		<div class="clearfix">
 			<div style="float: left; width: 50%">
-				<h1>Editar Cliente</h1>
+				<h1 th:text="#{editarcliente}"></h1>
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
 				
-				<div style="position: absolute; left: 39%; top : 39%;">
-							<input type="submit" value="Guardar" />						
+				<div style="position: absolute; left: 39%; top : 39%;">								
+					<input type="submit" th:attr="value = #{guardar}"/>					
 				</div>
 				
 			</div>
@@ -32,54 +35,55 @@
 		<div class="clearfix">
 			<hr/>
 		</div>
-	
 		
 		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 50%">
-				<label>Id</label>
+			<div style="float: left;width: 50%" th:text="#{nombre}">
+				
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
-				<input th:field="*{id}" readonly="readonly"/>
+				<input th:field="*{nombre}" />
+				<ul th:if="${#fields.hasErrors('nombre')}">
+        		     <li th:each="err : ${#fields.errors('nombre')}" th:text="${err}" class="error" />
+    			</ul>
 			</div> 
 		</div>
 		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 50%">
-				<label>Nombre</label>
+			<div style="float: left;width: 50%" th:text="#{apellido1}">
+				
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
-				<input th:field="*{nombre}"/>
+				<input th:field="*{apellido1}" />
+				<ul th:if="${#fields.hasErrors('apellido1')}">
+        		     <li th:each="err : ${#fields.errors('apellido1')}" th:text="${err}" class="error" />
+    			</ul>
 			</div> 
 		</div>
 		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 50%">
-				<label>Apellido1</label>
+			<div style="float: left;width: 50%" th:text="#{apellido2}">
+				
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
-				<input th:field="*{apellido1}"/>
+				<input th:field="*{apellido2}" />
 			</div> 
 		</div>
 		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 50%">
-				<label>Apellido2</label>
+			<div style="float: left;width: 50%" th:text="#{ciudad}">
+				
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
-				<input th:field="*{apellido2}"/>
+				<input th:field="*{ciudad}" />
+				<ul th:if="${#fields.hasErrors('ciudad')}">
+        		     <li th:each="err : ${#fields.errors('ciudad')}" th:text="${err}" class="error" />
+    			</ul>
 			</div> 
 		</div>
 		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 50%">
-				<label>Ciudad</label>
+			<div style="float: left;width: 50%" th:text="#{categoria}">
+				
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
-				<input th:field="*{ciudad}"/>
-			</div> 
-		</div>
-		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 50%">
-				<label>Categoría</label>
-			</div>
-			<div style="float: none;width: auto;overflow: hidden;">
-				<input th:field="*{categoria}"/>
+				<input th:field="*{categoria}" />
+				<p th:if="${#fields.hasErrors('categoria')}" th:errorclass="error" th:errors="*{categoria}" />
 			</div> 
 		</div>
 			
