@@ -1,5 +1,6 @@
 package org.iesvdm.modelo;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -20,18 +21,21 @@ public class Cliente {
 	}
 	private int id;
 	
-	@NotBlank(message = "Por favor, introduzca nombre")
-	@Size(max=30, message = "Nombre como máximo de 30 caracteres")
+	@NotBlank(message = "{error.nombre}")
+	@Size(max=30, message = "{error.nombre.size.max}")
 	private String nombre;
 	
-	@NotBlank(message = "Por favor, introduzca apellido")
-	@Size(max=30, message = "Nombre como máximo de 30 caracteres")
+	@NotBlank(message = "{error.apellido1}")
+	@Size(max=30, message = "{error.apellido1}")
 	private String apellido1;
 	
 	private String apellido2;
 	
-	@NotBlank(message = "Por favor, introduzca ciudad")
-	@Size(max=50, message = "Nombre como máximo de 50 caracteres")
+	@Email(regexp="^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\\.[a-zA-Z.]{2,5}", message = "{error.email}")
+	private String email;
+	
+	@NotBlank(message = "{error.ciudad}")
+	@Size(max=50, message = "{error.ciudad.size.max}")
 	private String ciudad;
 	
 	@Min(100)
