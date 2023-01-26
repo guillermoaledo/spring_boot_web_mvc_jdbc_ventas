@@ -6,9 +6,9 @@ import java.util.Iterator;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class RangoCategoriaValidator implements ConstraintValidator<RangoCategoria, String> {
+public class RangoCategoriaValidator implements ConstraintValidator<RangoCategoria, Integer> {
 
-	private ArrayList<Integer> rangos;
+	private ArrayList<Integer> rangos = new ArrayList<>();
 	
 	public void initialize(RangoCategoria constraintAnnotation) {
 		for(int i = 0; i < constraintAnnotation.value().length; i++) {
@@ -17,14 +17,22 @@ public class RangoCategoriaValidator implements ConstraintValidator<RangoCategor
 	}
 	
 	@Override
-	public boolean isValid(String object, ConstraintValidatorContext constraintContext) {
-		String mensajeError = null;
-		
-		if(object != null) object = object.trim();
-		
+	public boolean isValid(Integer categoria, ConstraintValidatorContext constraintContext) {
 		boolean isValid = false;
+		String mensajeError = "{error.categoria}";
 		
-		return false;
+		if(rangos.contains(categoria)) {
+			isValid = true;
+		}
+		
+		if ( !isValid ) {
+            constraintContext.disableDefaultConstraintViolation();
+            constraintContext.buildConstraintViolationWithTemplate(mensajeError)
+            .addConstraintViolation();
+        }
+		
+		return isValid;
+		
 	}
 
 }

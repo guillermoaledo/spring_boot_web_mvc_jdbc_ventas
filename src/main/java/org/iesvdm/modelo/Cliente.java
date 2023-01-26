@@ -1,5 +1,7 @@
 package org.iesvdm.modelo;
 
+import org.iesvdm.validador.RangoCategoria;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -40,6 +42,8 @@ public class Cliente {
 	
 	@Min(100)
 	@Max(1000)
+	
+	@RangoCategoria({100,200,300,400,500,600,700,800,900,1000})
 	private int categoria;
 	
 }

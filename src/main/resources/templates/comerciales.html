@@ -3,64 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <title>Comerciales</title>
-<style>
-.clearfix::after {
-	content: "";
-	display: block;
-	clear: both;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="https://kit.fontawesome.com/305d91946f.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <body>
 
-	<div id="contenedora" style="float:none; margin: 0 auto;width: 95%;" >
-		<div class="clearfix">
-			<div style="float: left; width: 50%">
+	<div class="container" >
+		<div class="row d-flex align-items-center">
+			<div class="col col-md-10 ">
 				<h1 th:text="#{comerciales}"></h1>
 			</div>
-			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
-				
-				<div style="position: absolute; left: 39%; top : 39%;">
-					
-						<form action="/comerciales/crear">
-							<input type="submit" th:attr="value = #{crear}">
-						</form>
-					</div>
-				
+			<div class="col col-md-2">
+				<form action="/comerciales/crear">
+					<input type="submit" th:attr="value = #{crear}">
+				</form>
 			</div>
 		</div>
 		<div class="clearfix">
 			<hr/>
 		</div>
-		<div class="clearfix">
-			<div style="float: left;width: 14%">Id</div>
-			<div style="float: left;width: 14%" th:text="#{nombre}"></div>
-			<div style="float: left;width: 14%" th:text="#{apellido1}"></div>
-			<div style="float: left;width: 14%" th:text="#{apellido2}"></div>
-			<div style="float: left;width: 14%" th:text="#{comision}"></div>
-			<div style="float: none;width: auto;overflow: hidden;" th:text="#{accion}"></div>
+		<div class="row">
+			<div class="col col-md-1">Id</div>
+			<div class="col col-md-2" th:text="#{nombre}"></div>
+			<div class="col col-md-2" th:text="#{apellido1}"></div>
+			<div class="col col-md-2" th:text="#{apellido2}"></div>
+			<div class="col col-md-2" th:text="#{comision}"></div>
+			<div class="col col-md-2" th:text="#{accion}"></div>
 		</div>
 		<div class="clearfix">
 			<hr/>
 		</div>
 
-		<div  th:each="comercial : ${listaComerciales}" style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 14%" th:text="${comercial.id}">0</div>
-			<div style="float: left;width: 14%" th:text="${comercial.nombre}">nombre</div>
-			<div style="float: left;width: 14%" th:text="${comercial.apellido1}">apellido1</div>
-			<div style="float: left;width: 14%" th:text="${comercial.apellido2 ?: '&nbsp;'}">apellido2</div>
-			<div style="float: left;width: 14%" th:text="${comercial.comision}">comisión</div>
-			<div style="float: none;width: auto;overflow: hidden;">
-				<form th:action="@{/comerciales/__${comercial.id}__}" style="display: inline;">
-    				<input type="submit" th:attr="value = #{detalle}" />
+		<div  th:each="comercial : ${listaComerciales}" class="row">
+			<div class="col col-md-1" th:text="${comercial.id}">0</div>
+			<div class="col col-md-2" th:text="${comercial.nombre}">nombre</div>
+			<div class="col col-md-2" th:text="${comercial.apellido1}">apellido1</div>
+			<div class="col col-md-2" th:text="${comercial.apellido2 ?: '&nbsp;'}">apellido2</div>
+			<div class="col col-md-2" th:text="${comercial.comision}">comisión</div>
+			<div class="col col-md-3">
+				<form th:action="@{/comerciales/__${comercial.id}__}" style="display: inline;">	
+	    			<button type="submit">
+						<i class="fa-solid fa-circle-info"></i>
+	    			</button>
 				</form>
 				<form th:action="@{/comerciales/editar/}+${comercial.id} " style="display: inline;">
-    				<input type="submit" th:attr="value = #{editar}" />
+    				<button type="submit">
+						<i class="fa-solid fa-pen-to-square"></i>
+    				</button>
 				</form>
 				<form th:action="@{/comerciales/borrar/__${comercial.id}__}" method="post" style="display: inline;">					
-    				<input type="submit" th:attr="value = #{eliminar}" />
+    				<button type="submit">
+						<i class="fa-solid fa-trash"></i>
+    				</button>
 				</form>
 			</div>
 		</div>
