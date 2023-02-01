@@ -92,7 +92,18 @@
 				
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
-				<input th:field="*{categoria}" />
+				<select name="categoria">
+				  <option th:field="*{categoria}" value="100">100</option>
+				  <option th:field="*{categoria}" value="200">200</option>
+				  <option th:field="*{categoria}" value="300">300</option>
+				  <option th:field="*{categoria}" value="400">400</option>
+				  <option th:field="*{categoria}" value="500">500</option>
+				  <option th:field="*{categoria}" value="600">600</option>
+				  <option th:field="*{categoria}" value="700">700</option>
+				  <option th:field="*{categoria}" value="800">800</option>
+				  <option th:field="*{categoria}" value="900">900</option>
+				  <option th:field="*{categoria}" value="1000">1000</option>
+				</select>
 				<p th:if="${#fields.hasErrors('categoria')}" th:errorclass="error" th:errors="*{categoria}" />
 			</div> 
 		</div>

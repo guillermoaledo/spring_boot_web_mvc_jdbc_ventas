@@ -40,10 +40,7 @@ public class Cliente {
 	@Size(max=50, message = "{error.ciudad.size.max}")
 	private String ciudad;
 	
-	@Min(100)
-	@Max(1000)
-	
-	@RangoCategoria({100,200,300,400,500,600,700,800,900,1000})
+	@RangoCategoria({100,200})
 	private int categoria;
 	
 }

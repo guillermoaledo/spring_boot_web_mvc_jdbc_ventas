@@ -3,12 +3,15 @@ package org.iesvdm.controlador;
 import java.util.List;
 
 import org.iesvdm.dto.PedidoDTO;
+import org.iesvdm.excepcion.MiExcepcion;
 import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.modelo.Pedido;
 import org.iesvdm.service.ComercialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +27,31 @@ import org.springframework.validation.BindingResult;
 
 @Controller
 public class ComercialController {
+	
+	@ExceptionHandler(MiExcepcion.class)
+	public String handleMiExcepcion(Model model, MiExcepcion miExcepcion) {
+		model.addAttribute("traza", miExcepcion.getMessage());
+		
+		return "error-mi-excepcion";
+	}
+	
+	@ExceptionHandler(RuntimeException.class)
+	public String handleAllUncaughtException(Model model, RuntimeException exception) {
+		model.addAttribute("traza", exception.getMessage());
+		
+		return "error";
+	}
+	
+	@GetMapping("/comerciales-runtime-exception")
+	public String comercialRuntimeException() throws RuntimeException{
+		throw new RuntimeException("Prueba de lanzamiento de excepción y manejo por ControllerAdvice");
+	
+	}
+	
+	@GetMapping("/comerciales-mi-excepcion")
+	public String comercialMiExcepcion() throws MiExcepcion{
+		throw new MiExcepcion();	
+	}
 	
 	@Autowired
 	private ComercialService comercialService;

@@ -21,29 +21,39 @@
 				</form>
 			</div>
 		</div>
-		<div class="clearfix">
+		<div>
 			<hr/>
 		</div>
-		<div class="row">
-			<div class="col col-md-1">Id</div>
-			<div class="col col-md-2" th:text="#{nombre}"></div>
-			<div class="col col-md-2" th:text="#{apellido1}"></div>
-			<div class="col col-md-2" th:text="#{apellido2}"></div>
-			<div class="col col-md-2" th:text="#{comision}"></div>
-			<div class="col col-md-2" th:text="#{accion}"></div>
+		<div class="row d-none d-md-flex">
+			<div class="col-12 col-md-1">Id</div>
+			<div class="col-12 col-md-2" th:text="#{nombre}"></div>
+			<div class="col-12 col-md-2" th:text="#{apellido1}"></div>
+			<div class="col-12 col-md-2" th:text="#{apellido2}"></div>
+			<div class="col-12 col-md-2" th:text="#{comision}"></div>
+			<div class="col-12 col-md-3" th:text="#{accion}"></div>
 		</div>
-		<div class="clearfix">
+		<div>
 			<hr/>
 		</div>
 
 		<div  th:each="comercial : ${listaComerciales}" class="row">
-			<div class="col col-md-1" th:text="${comercial.id}">0</div>
-			<div class="col col-md-2" th:text="${comercial.nombre}">nombre</div>
-			<div class="col col-md-2" th:text="${comercial.apellido1}">apellido1</div>
-			<div class="col col-md-2" th:text="${comercial.apellido2 ?: '&nbsp;'}">apellido2</div>
-			<div class="col col-md-2" th:text="${comercial.comision}">comisión</div>
-			<div class="col col-md-3">
-				<form th:action="@{/comerciales/__${comercial.id}__}" style="display: inline;">	
+			<div class="col-6 d-md-none">Id</div>
+			<div class="col-6 col-md-1" th:text="${comercial.id}">0</div>
+			
+			<div class="col-6 d-md-none" th:text="#{nombre}"></div>
+			<div class="col-6 col-md-2" th:text="${comercial.nombre}">nombre</div>
+			
+			<div class="col-6 d-md-none" th:text="#{apellido1}"></div>
+			<div class="col-6 col-md-2" th:text="${comercial.apellido1}">apellido1</div>
+			
+			<div class="col-6 d-md-none" th:text="#{apellido2}"></div>
+			<div class="col-6 col-md-2" th:text="${comercial.apellido2 ?: '&nbsp;'}">apellido2</div>
+			
+			<div class="col-6 d-md-none" th:text="#{comision}"></div>
+			<div class="col-6 col-md-2" th:text="${comercial.comision}">comisión</div>
+			
+			<div class="col-6 col-md-3 d-flex justify-content-start">
+				<form th:action="@{/comerciales/__${comercial.id}__}" class="">	
 	    			<button type="submit">
 						<i class="fa-solid fa-circle-info"></i>
 	    			</button>
@@ -59,6 +69,7 @@
     				</button>
 				</form>
 			</div>
+				<hr class="d-md-none mt-3"/>
 		</div>
 	</div>
 </body>
